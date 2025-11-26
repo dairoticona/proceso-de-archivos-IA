@@ -7,6 +7,7 @@ from mistralai import Mistral
 import openai 
 import io
 from fastapi.responses import StreamingResponse
+from typing import List
 
 load_dotenv()
 api_key = os.getenv('MISTRAL_API_KEY')
@@ -28,8 +29,8 @@ MODELO_OPENAI = "gpt-5-nano"
 
 
 app = FastAPI(
-    title="API de OCR con Mistral y análisis con OpenAI",
-    description="Sube un PDF para diagnóstico, fusiona PDF con JSON, o analiza ambos con IA."
+    title="API de OCR, Extracción y Generación con IA",
+    description="Endpoints para OCR, extracción de datos estructurados y generación de reportes dinámicos."
 )
 
 
@@ -157,3 +158,79 @@ async def analizar_con_ia(
     except Exception as e:
         print(f"Ha ocurrido un error: {e}")
         raise HTTPException(status_code=500, detail=f"Error interno del servidor: {e}")
+    
+# --- NUEVO ENDPOINT: GENERADOR DE REPORTES CON N JSONS ---
+@app.post("/probar-prompt-generador/")
+async def generar_reporte_con_prompt(
+    prompt_template: str = Form(..., description="La plantilla del prompt con placeholders como '_JSON_FORM1_'."),
+    file_placeholder_map: str = Form(..., description="Un string JSON que mapea placeholders a nombres de archivo. E.g., '{\"_JSON_FORM1_\": \"estrategia.json\"}'"),
+    files: List[UploadFile] = File(..., description="La lista de archivos JSON a procesar.")
+):
+    """
+    Genera un reporte o análisis complejo inyectando múltiples archivos JSON en una plantilla de prompt.
+    Ideal para tareas de síntesis, comparación o generación de informes que requieren cruzar
+    información de varias fuentes de datos estructurados.
+    """
+    try:
+        # 1. Parsear el mapa que relaciona placeholders con nombres de archivo
+        try:
+            mapa = json.loads(file_placeholder_map)
+            if not isinstance(mapa, dict): raise ValueError()
+        except (json.JSONDecodeError, ValueError):
+            raise HTTPException(
+                status_code=400, 
+                detail="El 'file_placeholder_map' debe ser un string que contenga un objeto JSON válido (diccionario)."
+            )
+
+        # 2. Crear un diccionario de los archivos subidos para un acceso rápido y validación
+        archivos_subidos = {file.filename: file for file in files}
+        for filename in mapa.values():
+            if filename not in archivos_subidos:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"El archivo '{filename}' fue definido en el mapa pero no se encontró en los archivos subidos."
+                )
+
+        # 3. Iniciar el proceso de inyección de datos
+        prompt_final = prompt_template
+        print("Iniciando inyección de contenido de archivos JSON en el prompt...")
+
+        for placeholder, filename in mapa.items():
+            archivo = archivos_subidos[filename]
+            contenido_bytes = await archivo.read()
+            contenido_str = contenido_bytes.decode('utf-8')
+            
+            # Validar que el contenido del archivo sea JSON válido antes de inyectarlo
+            try:
+                json.loads(contenido_str)
+            except json.JSONDecodeError:
+                 raise HTTPException(
+                    status_code=400, 
+                    detail=f"El contenido del archivo '{filename}' no es un JSON válido."
+                )
+
+            prompt_final = prompt_final.replace(placeholder, contenido_str)
+            print(f"Placeholder '{placeholder}' reemplazado con el contenido de '{filename}'.")
+
+        # 4. Llamar a la API de OpenAI
+        print("Inyección completada. Enviando prompt final a OpenAI...")
+        response_openai = openai_client.chat.completions.create(
+            model=MODELO_OPENAI,
+            messages=[
+                {"role": "system", "content": "Eres un asistente experto en análisis y redacción de informes. Sigue las instrucciones del usuario al pie de la letra para generar el reporte solicitado."},
+                {"role": "user", "content": prompt_final}
+            ],
+            temperature=0.5, # Un poco de creatividad para la redacción sin alucinar
+            max_tokens=4000  # Aumentamos el límite para reportes largos
+            # Nota: No forzamos un formato JSON de salida, ya que se espera un reporte en texto.
+        )
+        print("Respuesta recibida de OpenAI.")
+
+        # 5. Devolver el resultado generado por la IA
+        reporte_generado = response_openai.choices[0].message.content
+        return {"reporte_generado": reporte_generado}
+
+    except Exception as e:
+        error_message = str(e).encode('utf-8', 'replace').decode('utf-8')
+        print(f"Ha ocurrido un error inesperado: {error_message}")
+        raise HTTPException(status_code=500, detail=f"Error interno del servidor: {error_message}")
