@@ -1,0 +1,17 @@
+# Web Framework
+fastapi
+
+# ASGI Server to run FastAPI
+uvicorn[standard]
+
+# For handling file uploads and form data in FastAPI
+python-multipart
+
+# To load environment variables from a .env file
+python-dotenv
+
+# Official Python client for the Mistral AI API
+mistralai
+
+# Official Python client for the OpenAI API
+openai

@@ -1,0 +1,44 @@
+LUIS FERNANDO HINOJOSA RIVERA
+Luis111ferrivera@gmail.com +591 - 67787486 Portafolio | LinkedIn
+EDUCACIÓN
+Universidad Autónoma Gabriel Rene Moreno 7mo Semestre
+Licenciatura en Ingeniería Informática
+ PROYECTOS PRINCIPALES
+Hackathon “Google Build with AI Bolivia” (Organizado por GDG Bolivia) Junio - 2025
+Proyecto (ODS 4: Educación de calidad): En un equipo, abordamos el desafio de la autoeducación desestructurada
+Mi rol (Frontend developer): Desarrollar ui/ux para una plataforma que utiliza un agente de IA para generar rutas de aprendizaje 
+personalizadas.
+▪ La plataforma genera contenido dinámico y estructurado con múltiples formatos (podcast, diagramas, flashcards) a partir de 
+un tema de estudio ingresado por el usuario.
+▪ Tecnologías (Frontend): Svelte, TypeScript, Tailwind CSS, Firebase, Mermaid.js.
+Botsi – Aplicacion de productividad con IA (Web/PWA) Dic - 2024 | Julio - 2025
+Colaboré como Desarrollador Frontend en la creación de Botsi, una suite de productividad con módulos de tareas, actividades y
+finanzas.
+▪ Implementé la interfaz para un chat inteligente que registra datos mediante IA, facilitando la entrada de información al 
+usuario.
+▪ Desarrollé componentes para la visualización de reportes, y consejos personalizados generados por un modelo de IA.
+▪ Contribuí a empaquetar la aplicación como una PWA, asegurando una experiencia de usuario responsiva y unificada.
+▪ Tecnologías (Frontend): Svelte, TypeScript, Tailwind CSS, Firebase.
+Vizta - Plataforma SaaS para eCommerce y Sitios Corporativos Marzo - 2025 | Junio - 2025
+Contribui en el desarrollo frontend de Vizta, una solución que permite a negocios crear y administrar sus propias tiendas en línea y 
+páginas informativas a través de plantillas.
+▪ Desarrollé el panel de administración con Svelte, permitiendo la personalización completa de la tienda (logo, colores, 
+dominio, gestión de productos).
+▪ Construí Plataforma de templates personalizables para empresas que buscan presencia e-commerce o corporativa web (SSR).
+▪ Construí la landing page informativa utilizando Astro.
+▪ Tecnologías (Frontend): Svelte, Astro, TypeScript, Tailwind CSS, Firebase.
+Plataforma Educativa para Instituto de Idiomas Marzo - 2025 | Junio - 2025
+Participé como desarrollador Full-Stack en la creación de una aplicación administrativa educativa.
+▪ La versión 1 fue lanzada con éxito y se encuentra en fase de mantenimiento y desarrollo de nuevas funcionalidades.
+▪ Tecnologías: Backend: .NET, SQL Server. Frontend: React, Tailwind CSS.
+EXPERIENCIA LABORAL
+Desarrollador de Aplicaciones Web Diciembre – 2023 | Septiembre - 2024
+Colabore como desarrollador Full-Stack en un equipo para la creación de un sistema de ventas POS. Contribui en el desarrollo de la API REST con 
+Node.js, Express y PostgreSQL, implementación de la interfaz de usuario con React y Tailwind CSS.
+Desarrollador Fullstack en Instituto Educativo Mayo – 2024 | Octubre - 2024
+Colaboré en un equipo ágil para desarrollar una plataforma educativa, el desarrollo del backend con .NET y frontend con React.
+HABILIDADES
+PROGRAMACIÓN LENGUAJES TECNOLOGÍAS
+Java, C/C++, Python, JavaScript, C#, TypeScript, Kotlin HTML, CSS, TailwindCss, Flutter, React, Svelte, Angular, Laravel,
+Astro, Node.js Express, .NET, Sprint Boot, FastAPI, MySQL, SQL 
+Server, PostgreSQL, Firebase, Git, Vite, PWA, APIs REST.

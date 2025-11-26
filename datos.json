@@ -1,0 +1,150 @@
+{
+    "nombre": "LUIS FERNANDO HINOJOSA RIVERA",
+    "contacto": {
+        "email": "Luis111ferrivera@gmail.com",
+        "telefono": "+591 - 67787486",
+        "plataformas": [
+            "Portafolio",
+            "LinkedIn"
+        ]
+    },
+    "educacion": [
+        {
+            "institucion": "Universidad Autónoma Gabriel Rene Moreno",
+            "semestre": "7mo Semestre",
+            "grado": "Licenciatura en Ingeniería Informática"
+        }
+    ],
+    "proyectos_principales": [
+        {
+            "titulo": "Hackathon “Google Build with AI Bolivia”",
+            "organizador": "GDG Bolivia",
+            "periodo": "Junio - 2025",
+            "ods": "ODS 4: Educación de calidad",
+            "descripcion_general": "En un equipo, abordamos el desafio de la autoeducación desestructurada",
+            "rol": "Frontend developer",
+            "responsabilidades": [
+                "Mi rol (Frontend developer): Desarrollar ui/ux para una plataforma que utiliza un agente de IA para generar rutas de aprendizaje personalizadas.",
+                "La plataforma genera contenido dinámico y estructurado con múltiples formatos (podcast, diagramas, flashcards) a partir de un tema de estudio ingresado por el usuario."
+            ],
+            "tecnologias_frontend": [
+                "Svelte",
+                "TypeScript",
+                "Tailwind CSS",
+                "Firebase",
+                "Mermaid.js"
+            ]
+        },
+        {
+            "titulo": "Botsi – Aplicacion de productividad con IA (Web/PWA)",
+            "periodo": "Dic - 2024 | Julio - 2025",
+            "descripcion": "Colaboré como Desarrollador Frontend en la creación de Botsi, una suite de productividad con módulos de tareas, actividades y finanzas.",
+            "responsabilidades": [
+                "Implementé la interfaz para un chat inteligente que registra datos mediante IA, facilitando la entrada de información al usuario.",
+                "Desarrollé componentes para la visualización de reportes, y consejos personalizados generados por un modelo de IA.",
+                "Contribuí a empaquetar la aplicación como una PWA, asegurando una experiencia de usuario responsiva y unificada."
+            ],
+            "tecnologias_frontend": [
+                "Svelte",
+                "TypeScript",
+                "Tailwind CSS",
+                "Firebase"
+            ]
+        },
+        {
+            "titulo": "Vizta - Plataforma SaaS para eCommerce y Sitios Corporativos",
+            "periodo": "Marzo - 2025 | Junio - 2025",
+            "descripcion": "Contribuí en el desarrollo frontend de Vizta, una solución que permite a negocios crear y administrar sus propias tiendas en línea y páginas informativas a través de plantillas.",
+            "responsabilidades": [
+                "Desarrollé el panel de administración con Svelte, permitiendo la personalización completa de la tienda (logo, colores, dominio, gestión de productos).",
+                "Construí Plataforma de templates personalizables para empresas que buscan presencia e-commerce o corporativa web (SSR).",
+                "Construí la landing page informativa utilizando Astro."
+            ],
+            "tecnologias_frontend": [
+                "Svelte",
+                "Astro",
+                "TypeScript",
+                "Tailwind CSS",
+                "Firebase"
+            ]
+        },
+        {
+            "titulo": "Plataforma Educativa para Instituto de Idiomas",
+            "periodo": "Marzo - 2025 | Junio - 2025",
+            "descripcion": "Participé como desarrollador Full-Stack en la creación de una aplicación administrativa educativa.",
+            "responsabilidades": [
+                "La versión 1 fue lanzada con éxito y se encuentra en fase de mantenimiento y desarrollo de nuevas funcionalidades."
+            ],
+            "tecnologias": {
+                "backend": [
+                    ".NET",
+                    "SQL Server"
+                ],
+                "frontend": [
+                    "React",
+                    "Tailwind CSS"
+                ]
+            }
+        }
+    ],
+    "experiencia_laboral": [
+        {
+            "titulo": "Desarrollador de Aplicaciones Web",
+            "periodo": "Diciembre 2023 - Septiembre 2024",
+            "descripcion": "Colabore como desarrollador Full-Stack en un equipo para la creación de un sistema de ventas POS. Contribuí en el desarrollo de la API REST con Node.js, Express y PostgreSQL, implementación de la interfaz de usuario con React y Tailwind CSS.",
+            "tecnologias": [
+                "Node.js",
+                "Express",
+                "PostgreSQL",
+                "React",
+                "Tailwind CSS"
+            ]
+        },
+        {
+            "titulo": "Desarrollador Fullstack en Instituto Educativo",
+            "periodo": "Mayo 2024 - Octubre 2024",
+            "descripcion": "Colaboré en un equipo ágil para desarrollar una plataforma educativa, el desarrollo del backend con .NET y frontend con React.",
+            "tecnologias": [
+                ".NET",
+                "React"
+            ]
+        }
+    ],
+    "habilidades": {
+        "programacion": {
+            "lenguajes": [
+                "Java",
+                "C/C++",
+                "Python",
+                "JavaScript",
+                "C#",
+                "TypeScript",
+                "Kotlin"
+            ]
+        },
+        "tecnologias": [
+            "HTML",
+            "CSS",
+            "TailwindCss",
+            "Flutter",
+            "React",
+            "Svelte",
+            "Angular",
+            "Laravel",
+            "Astro",
+            "Node.js",
+            "Express",
+            ".NET",
+            "Sprint Boot",
+            "FastAPI",
+            "MySQL",
+            "SQL Server",
+            "PostgreSQL",
+            "Firebase",
+            "Git",
+            "Vite",
+            "PWA",
+            "APIs REST"
+        ]
+    }
+}
