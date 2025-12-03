@@ -1,6 +1,6 @@
 import os
 import json
-from fastapi import FastAPI, UploadFile, File, HTTPException, Form # <--- AÑADIDO: Form
+from fastapi import FastAPI, UploadFile, File, HTTPException, Form
 from pathlib import Path
 from dotenv import load_dotenv
 from mistralai import Mistral
@@ -8,6 +8,7 @@ import openai
 import io
 from fastapi.responses import StreamingResponse
 from typing import List
+from docx import Document  # <--- AÑADIDO: Para generar documentos Word
 
 load_dotenv()
 api_key = os.getenv('MISTRAL_API_KEY')
@@ -67,7 +68,6 @@ async def extraer_texto_de_pdf(
     except Exception as e:
         print(f"Ha ocurrido un error: {e}")
         raise HTTPException(status_code=500, detail=f"Error interno del servidor: {e}")
-
 
 
 
@@ -170,7 +170,7 @@ async def generar_reporte_con_prompt(
     """
     Genera un reporte o análisis complejo inyectando múltiples archivos JSON en una plantilla de prompt.
     Ideal para tareas de síntesis, comparación o generación de informes que requieren cruzar
-    información de varias fuentes de datos estructurados.
+    información de varias fuentes de datos estructurados. Devuelve un documento Word descargable.
     """
     try:
         # 1. Parsear el mapa que relaciona placeholders con nombres de archivo
@@ -224,9 +224,38 @@ async def generar_reporte_con_prompt(
         )
         print("Respuesta recibida de OpenAI.")
 
-        # 5. Devolver el resultado generado por la IA
+        # 5. Generar el documento Word con el reporte
         reporte_generado = response_openai.choices[0].message.content
-        return {"reporte_generado": reporte_generado}
+        
+        # Crear un nuevo documento de Word
+        doc = Document()
+        doc.add_heading('Reporte Generado por IA', 0)
+        
+        # Agregar el contenido del reporte
+        # Dividir el reporte en párrafos para mejor formato
+        for parrafo in reporte_generado.split('\n'):
+            if parrafo.strip():  # Solo agregar párrafos no vacíos
+                doc.add_paragraph(parrafo)
+        
+        # 6. Guardar el documento en memoria
+        word_stream = io.BytesIO()
+        doc.save(word_stream)
+        word_stream.seek(0)  # Volver al inicio del stream
+        
+        # 7. Generar nombre del archivo de descarga
+        download_filename = "reporte_generado_IA.docx"
+        
+        # 8. Crear las cabeceras para forzar la descarga
+        headers = {
+            'Content-Disposition': f'attachment; filename="{download_filename}"'
+        }
+        
+        # 9. Devolver el documento Word como StreamingResponse
+        return StreamingResponse(
+            content=word_stream, 
+            media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            headers=headers
+        )
 
     except Exception as e:
         error_message = str(e).encode('utf-8', 'replace').decode('utf-8')

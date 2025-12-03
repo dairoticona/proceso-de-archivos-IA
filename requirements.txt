@@ -15,3 +15,6 @@ mistralai
 
 # Official Python client for the OpenAI API
 openai
+
+# For generating Word documents (.docx)
+python-docx
