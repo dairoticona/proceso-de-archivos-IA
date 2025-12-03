@@ -26,6 +26,7 @@ if not openai_api_key:
 openai_client = openai.OpenAI(api_key=openai_api_key)
 # Define el modelo a utilizar. Reemplaza "gpt-4o" si prefieres otro como "gpt-4-turbo".
 MODELO_OPENAI = "gpt-5-nano"
+MODELO_OPENAI2 = "gpt-5-mini"
 
 
 app = FastAPI(
@@ -215,13 +216,13 @@ async def generar_reporte_con_prompt(
         # 4. Llamar a la API de OpenAI
         print("Inyección completada. Enviando prompt final a OpenAI...")
         response_openai = openai_client.chat.completions.create(
-            model=MODELO_OPENAI,
+            model=MODELO_OPENAI2,
             messages=[
                 {"role": "system", "content": "Eres un asistente experto en análisis y redacción de informes. Sigue las instrucciones del usuario al pie de la letra para generar el reporte solicitado."},
                 {"role": "user", "content": prompt_final}
             ],
-            temperature=0.5, # Un poco de creatividad para la redacción sin alucinar
-            max_tokens=4000  # Aumentamos el límite para reportes largos
+            temperature=0.3, # Un poco de creatividad para la redacción sin alucinar
+            max_completion_tokens=200000  # Aumentamos el límite para reportes largos
             # Nota: No forzamos un formato JSON de salida, ya que se espera un reporte en texto.
         )
         print("Respuesta recibida de OpenAI.")
